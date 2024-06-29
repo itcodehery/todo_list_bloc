@@ -21,7 +21,7 @@ class TodoListState extends State<TodoList> {
     return BlocProvider(
       create: (context) => ListCubit(),
       child: const MaterialApp(
-        title: "Todo List Bloc",
+        title: "Todo",
         debugShowCheckedModeBanner: false,
         home: HomePage(),
       ),

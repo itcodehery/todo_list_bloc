@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_bloc/model/todo_class.dart';
+import 'package:todo_list_bloc/database/database_helper.dart';
 
 class ListCubit extends Cubit<List<Todo>> {
-  ListCubit() : super([]);
+  final DatabaseHelper _dbHelper = DatabaseHelper();
 
-  void addToList(Todo todoItem) => emit(List.from(state)..add(todoItem));
+  ListCubit() : super([]) {
+    _loadTodos();
+  }
 
-  void removeFromList(String title) =>
-      emit(List.from(state)..removeWhere((item) => item.title == title));
+  void _loadTodos() async {
+    final todos = await _dbHelper.fetchTodos();
+    emit(todos);
+  }
 
-  void updateTodoStatus(int id, bool isDone) {
+  void addToList(Todo todoItem) async {
+    await _dbHelper.insertTodo(todoItem);
+    emit(List.from(state)..add(todoItem));
+  }
+
+  void removeFromList(String title) async {
+    await _dbHelper.deleteTodo(title);
+    emit(List.from(state)..removeWhere((item) => item.title == title));
+  }
+
+  void updateTodoStatus(int id, bool isDone) async {
+    await _dbHelper.updateTodoStatus(id, isDone);
+
     final updatedList = state.map((todo) {
       return todo.id == id ? todo.copyWith(isDone: isDone) : todo;
     }).toList();
