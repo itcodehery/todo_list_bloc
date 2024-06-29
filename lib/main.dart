@@ -3,6 +3,7 @@ import 'package:todo_list_bloc/bloc/list_cubit.dart';
 import 'package:todo_list_bloc/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// simple todo list app using bloc
 void main() {
   runApp(const TodoList());
 }
