@@ -20,6 +20,14 @@ class _HomePageState extends State<HomePage> {
           "Todo",
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // goto settings
+                Navigator.of(context).pushNamed("/settings");
+              },
+              icon: const Icon(Icons.settings_outlined))
+        ],
       ),
       body: BlocBuilder<ListCubit, List<Todo>>(
         builder: (context, listOfTodo) {
