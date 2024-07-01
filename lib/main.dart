@@ -20,10 +20,11 @@ class TodoListState extends State<TodoList> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ListCubit(),
-      child: const MaterialApp(
+      child: MaterialApp(
         title: "Todo",
+        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "RedHat"),
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: const HomePage(),
       ),
     );
   }

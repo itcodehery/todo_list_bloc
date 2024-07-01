@@ -88,5 +88,11 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family: RedHat
+      fonts:
+      - asset: assets/RedHatDisplay_Complete/Fonts/TTF/RedHatDisplay-Variable.ttf
+      - asset: assets/RedHatDisplay_Complete/Fonts/TTF/RedHatDisplay-VariableItalic.ttf
+        style: italic
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
