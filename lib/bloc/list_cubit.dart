@@ -15,6 +15,11 @@ class ListCubit extends Cubit<List<Todo>> {
     emit(todos);
   }
 
+  Future<List<Todo>> searchTodos(String query) async {
+    final todos = await _dbHelper.fetchTodos();
+    return todos.where((todo) => todo.title.contains(query)).toList();
+  }
+
   void addToList(Todo todoItem) async {
     await _dbHelper.insertTodo(todoItem);
     emit(List.from(state)..add(todoItem));

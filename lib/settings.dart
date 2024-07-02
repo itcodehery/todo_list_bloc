@@ -21,8 +21,8 @@ ThemeData themeData(ThemeForApp theme) {
         primaryColor: Colors.purple[800], // Primary color for dark mode
         scaffoldBackgroundColor:
             Colors.grey[900], // Background color for scaffold
-        appBarTheme: AppBarTheme(
-          color: Colors.purple[900], // AppBar color
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent, // AppBar color
         ),
         colorScheme: ColorScheme.dark(
           primary: Colors.purple[800]!,
@@ -35,8 +35,8 @@ ThemeData themeData(ThemeForApp theme) {
           color: Colors.grey[850], // Card background color
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.purple[900], // FAB background color
-          foregroundColor: Colors.white, // FAB icon/text color
+          backgroundColor: Colors.purple, // FAB background color
+          foregroundColor: Colors.purple[100], // FAB icon/text color
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(),
@@ -53,7 +53,7 @@ ThemeData themeData(ThemeForApp theme) {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.deepPurple[800]!),
+            borderSide: const BorderSide(color: Colors.purple),
           ),
         ),
         iconTheme: const IconThemeData(
@@ -61,7 +61,7 @@ ThemeData themeData(ThemeForApp theme) {
         ),
         dividerColor: Colors.grey[700], // Divider color
         snackBarTheme: SnackBarThemeData(
-          backgroundColor: Colors.purple[800], // SnackBar background color
+          backgroundColor: Colors.purple[600], // SnackBar background color
           contentTextStyle:
               const TextStyle(color: Colors.white), // SnackBar text color
           actionTextColor: Colors.purpleAccent[400], // SnackBar action color
@@ -75,18 +75,16 @@ ThemeData themeData(ThemeForApp theme) {
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor:
               Colors.grey[900], // Bottom navigation bar background color
-          selectedItemColor:
-              Colors.deepPurpleAccent[400], // Selected item color
+          selectedItemColor: Colors.purple[400], // Selected item color
           unselectedItemColor: Colors.white70, // Unselected item color
         ),
         tabBarTheme: TabBarTheme(
-          labelColor:
-              Colors.deepPurpleAccent[400], // Tab bar selected text color
+          labelColor: Colors.purple[400], // Tab bar selected text color
           unselectedLabelColor: Colors.white70, // Tab bar unselected text color
           indicator: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: Colors.deepPurpleAccent[400]!,
+                color: Colors.purple[400]!,
                 width: 2.0,
               ),
             ),

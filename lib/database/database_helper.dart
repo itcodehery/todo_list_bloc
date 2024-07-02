@@ -1,20 +1,23 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_list_bloc/model/todo_class.dart';
-import 'package:todo_list_bloc/settings.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
   static Database? _database;
-  static Database? _themeDatabase;
 
   factory DatabaseHelper() => _instance;
 
   DatabaseHelper._internal();
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
+    if (_database != null) {
+      debugPrint("Database already exists");
+      return _database!;
+    }
+    debugPrint("Database is null, initializing...");
     _database = await _initDatabase();
     return _database!;
   }
@@ -30,23 +33,6 @@ class DatabaseHelper {
     );
   }
 
-  Future<Database> get themeDatabase async {
-    if (_themeDatabase != null) return _themeDatabase!;
-    _themeDatabase = await _initThemeDatabase();
-    return _themeDatabase!;
-  }
-
-  Future<Database> _initThemeDatabase() async {
-    final databasePath = await getDatabasesPath();
-    final path = join(databasePath, 'theme_database.db');
-
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onThemeCreate,
-    );
-  }
-
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE todos (
@@ -54,35 +40,17 @@ class DatabaseHelper {
         title TEXT,
         description TEXT,
         isDone INTEGER,
-        createdOn TEXT
+        createdOn TEXT,
+        icon INTEGER
       )
     ''');
   }
 
-  Future<void> insertTheme(String theme) async {
-    final db = await database;
-    await db.insert(
-      'settings',
-      {'theme': theme},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<void> _onThemeCreate(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE settings (
-        id INTEGER PRIMARY KEY,
-        theme TEXT
-      )
-    ''');
-  }
-
-  Future<void> fetchTheme() async {
-    final db = await database;
-    final theme = await db.query('settings');
-    if (theme.isNotEmpty) {
-      settings["theme"] = theme[0]["theme"];
-    }
+  Future<void> deleteTheDatabase() async {
+    final databasePath = await getDatabasesPath();
+    debugPrint("Deleting database at $databasePath");
+    final path = join(databasePath, 'todo_database.db');
+    await deleteDatabase(path);
   }
 
   Future<int> insertTodo(Todo todo) async {

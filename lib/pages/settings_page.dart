@@ -26,6 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ListTile(
+              leading: const Icon(Icons.brightness_6_outlined),
               title: const Text("Toggle Theme"),
               subtitle: Text(
                   "Currently set to ${theme.brightness == Brightness.dark ? "Dark" : "Light"} Mode"),
@@ -38,6 +39,29 @@ class _SettingsPageState extends State<SettingsPage> {
                             Brightness.dark
                         ? true
                         : false);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info_outline),
+              title: const Text("About"),
+              subtitle: const Text("Made by Hari Prasad"),
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("About"),
+                        content: const Text(
+                            "This is a simple todo app made using flutter and bloc"),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Close"))
+                        ],
+                      );
+                    });
               },
             )
           ],

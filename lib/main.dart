@@ -4,6 +4,7 @@ import 'package:todo_list_bloc/bloc/theme_cubit.dart';
 import 'package:todo_list_bloc/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_bloc/pages/settings_page.dart';
+import 'package:todo_list_bloc/pages/splash_page.dart';
 import 'package:todo_list_bloc/settings.dart';
 
 // simple todo list app using bloc
@@ -31,7 +32,7 @@ class TodoListState extends State<TodoList> {
           title: "Todo",
           theme: theme,
           debugShowCheckedModeBanner: false,
-          home: const HomePage(),
+          home: const SplashPage(),
           routes: {
             "/home": (context) => const HomePage(),
             "/settings": (context) => const SettingsPage(),
